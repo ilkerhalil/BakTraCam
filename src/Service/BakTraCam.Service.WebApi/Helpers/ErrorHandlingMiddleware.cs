@@ -11,7 +11,7 @@ namespace BakTraCam.Service.WebApi.Helpers
      
         public ErrorHandlingMiddleware(RequestDelegate next)
         {
-            this._next = next;
+            _next = next;
         }
         public async Task Invoke(HttpContext context /* other dependencies */)
         {

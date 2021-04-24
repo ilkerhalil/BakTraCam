@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BakTraCam.Common.Helper.Enums
+﻿namespace BakTraCam.Common.Helper.Enums
 {
     public partial class Enums
     {

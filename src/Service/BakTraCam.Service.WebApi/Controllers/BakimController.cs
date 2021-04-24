@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BakTraCam.Service.WebApi.Controllers
 {
-    public class BakimController : BaseController<BakimController>
+    public class BakimController : ControllerBase
     {
         private readonly IBakimApplication _bakimApp;
 
@@ -19,14 +19,16 @@ namespace BakTraCam.Service.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> BakimListesiniGetir()
         {
-            return Ok(await _bakimApp.BakimlistesiGetirAsync());
+            var bakimlistesiGetirAsync = await _bakimApp.BakimlistesiGetirAsync();
+            return Ok(bakimlistesiGetirAsync);
         }
 
         [Route("[action]")]
         [HttpGet]
         public async Task<IActionResult> OnBesGunYaklasanBakimlariGetir()
         {
-            return Ok(await _bakimApp.OnBesGunYaklasanBakimlariGetirAsync());
+            var onBesGunYaklasanBakimlariGetirAsync = await _bakimApp.OnBesGunYaklasanBakimlariGetirAsync();
+            return Ok(onBesGunYaklasanBakimlariGetirAsync);
         }
 
         [Route("[action]")]
@@ -34,7 +36,8 @@ namespace BakTraCam.Service.WebApi.Controllers
         public async Task<IActionResult> KaydetBakim(BakimModel bakimModel)
         {
             var result = await _bakimApp.KaydetBakimAsync(bakimModel);
-            return result != null ? Success(result) : Fail();
+            return Ok(result);
+            //return result != null ? Success(result) : Fail();
         }
 
         [Route("[action]")]
@@ -42,28 +45,32 @@ namespace BakTraCam.Service.WebApi.Controllers
         public async Task<IActionResult> SilBakim(int id)
         {
             var key = await _bakimApp.SilBakimAsync(id);
-            return key >0 ? Success(key) : Fail();
+            return Ok(key);
+            //return key >0 ? Success(key) : Fail();
         }
 
         [Route("[action]")]
         [HttpGet]
         public async Task<IActionResult> GetirBakim(int id)
         {
-            return Ok(await _bakimApp.GetirBakimAsync(id));
+            var getirBakimAsync = await _bakimApp.GetirBakimAsync(id);
+            return Ok(getirBakimAsync);
         }
 
         [Route("[action]")]
         [HttpGet]
         public async Task<IActionResult> GetirBakimListesiTipFiltreli(int tip)
         {
-            return Ok(await _bakimApp.GetirBakimListesiTipFiltreliAsync(tip));
+            var getirBakimListesiTipFiltreliAsync = await _bakimApp.GetirBakimListesiTipFiltreliAsync(tip);
+            return Ok(getirBakimListesiTipFiltreliAsync);
         }
 
         [Route("[action]")]
         [HttpGet]
         public async Task<IActionResult> GetirBakimListesiDurumFiltreli(int durum)
         {
-            return Ok(await _bakimApp.GetirBakimListesiDurumFiltreliAsync(durum));
+            var getirBakimListesiDurumFiltreliAsync = await _bakimApp.GetirBakimListesiDurumFiltreliAsync(durum);
+            return Ok(getirBakimListesiDurumFiltreliAsync);
         }
 
         

@@ -5,16 +5,16 @@ namespace BakTraCam.Common.Helper.Extensions.Definitions
 {
     public class DefaultJsonFormatter : IJsonFormatter
     {
-        private Exception _exception { get; }
+        private Exception Exception { get; }
 
         public DefaultJsonFormatter(Exception exception)
         {
-            _exception = exception;
+            Exception = exception;
         }
 
         public string ToJson()
         {
-            return JsonConvert.SerializeObject(_exception.Message);
+            return JsonConvert.SerializeObject(Exception.Message);
         }
 
     }

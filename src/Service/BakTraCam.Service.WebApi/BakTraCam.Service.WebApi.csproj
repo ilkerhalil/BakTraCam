@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>9a96db97-5c20-43bd-b858-fecee80591f4</UserSecretsId>
   </PropertyGroup>
 
@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\BakTraCam.Core.Business\BakTraCam.Core.Business.csproj" />
-    <ProjectReference Include="..\..\Core\BakTraCam.Core.IoC\BakTraCam.Core.IoC.csproj" />
   </ItemGroup>
 
 

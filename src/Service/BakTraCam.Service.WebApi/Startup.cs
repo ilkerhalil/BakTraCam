@@ -1,3 +1,8 @@
+using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Security.Policy;
 using BakTraCam.Core.Business.Application.Bakim;
 using BakTraCam.Core.Business.Application.Kullanici;
 using BakTraCam.Core.Business.Application.Ortak;
@@ -19,7 +24,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BakTraCam.Service.WebApi.Helpers;
 using BakTraCam.Util.Mapping.Adapter;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 namespace BakTraCam.Service.WebApi
 {
@@ -50,7 +57,7 @@ namespace BakTraCam.Service.WebApi
             });
 
             services.AddControllers().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-            
+
             services
                 .AddScoped<IBakimApplication, BakimApplication>();
             services
@@ -87,11 +94,51 @@ namespace BakTraCam.Service.WebApi
             {
                 opt.SetDefaultCulture("tr-TR");
             });
+            services
+                .AddApiVersioning(cfg =>
+                {
+                    cfg.DefaultApiVersion = new ApiVersion(1, 0);
+                    cfg.AssumeDefaultVersionWhenUnspecified = true;
+                    cfg.ReportApiVersions = true;
+                });
 
+            services
+                .AddVersionedApiExplorer(opt =>
+                {
+                    opt.GroupNameFormat = "'v'VVV";
+                    opt.SubstituteApiVersionInUrl = true;
+                });
+
+            services
+                .AddSwaggerGen(c =>
+                {
+                    var provider = services.BuildServiceProvider();
+                    var service = provider.GetRequiredService<IApiVersionDescriptionProvider>();
+                    foreach (ApiVersionDescription description in service.ApiVersionDescriptions)
+                    {
+                        
+                        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                        c.IncludeXmlComments(xmlPath);
+                        c.CustomSchemaIds(x=> x.FullName);
+                        c.SwaggerDoc(description.GroupName,CreateMetaInfoApiVersion(description));
+                    }
+
+                });
+        }
+
+        private OpenApiInfo CreateMetaInfoApiVersion(ApiVersionDescription description)
+        {
+            return new OpenApiInfo
+            {
+                Title = "BakTraCam",
+                Version = description.ApiVersion.ToString(),
+                Description = " This service is TEST sample service which provides ability to get weather control data ",
+            };
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env )
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             //var sirketId = Configuration.GetSection("AppParameters").GetValue<int>("SirketId");
 
@@ -118,6 +165,26 @@ namespace BakTraCam.Service.WebApi
             {
                 ep.MapControllers();
             });
+            app.UseSwagger(c =>
+            {
+                c.RouteTemplate = "/swagger/{documentName}/swagger.json";
+            });
+            
+            app.UseSwaggerUI(options =>
+            {
+                options.RoutePrefix = string.Empty;
+                options.DisplayRequestDuration();
+                var provider = app.ApplicationServices.GetService<IApiVersionDescriptionProvider>();
+                foreach (var apiVersionDescription in provider
+                    .ApiVersionDescriptions
+                    .OrderByDescending(x => x.ApiVersion))
+                {
+                    options.SwaggerEndpoint(
+                        $"/swagger/{apiVersionDescription.GroupName}/swagger.json",
+                        $"Version {apiVersionDescription.ApiVersion}");
+                }
+            });
+                
         }
     }
 }

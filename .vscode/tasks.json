@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/SERVICE/BakTraCam.Service.WebApi/BakTraCam.Service.WebApi.csproj",
+                "${workspaceFolder}/src/Service/BakTraCam.Service.WebApi/BakTraCam.Service.WebApi.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/SERVICE/BakTraCam.Service.WebApi/BakTraCam.Service.WebApi.csproj",
+                "${workspaceFolder}/src/Service/BakTraCam.Service.WebApi/BakTraCam.Service.WebApi.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +32,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/SERVICE/BakTraCam.Service.WebApi/BakTraCam.Service.WebApi.csproj",
+                "${workspaceFolder}/src/Service/BakTraCam.Service.WebApi/BakTraCam.Service.WebApi.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],

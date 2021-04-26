@@ -3,8 +3,11 @@ using BakTraCam.Core.Business.Application.Bakim;
 using BakTraCam.Service.DataContract;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BakTraCam.Service.WebApi.Controllers
+namespace BakTraCam.Service.WebApi.Controllers.V1
 {
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiController]
+    [ApiVersion("1.0")]
     public class BakimController : ControllerBase
     {
         private readonly IBakimApplication _bakimApp;

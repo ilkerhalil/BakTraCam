@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/SERVICE/BakTraCam.Service.WebApi/bin/Debug/netcoreapp3.1/BakTraCam.Service.WebApi.dll",
+            "program": "${workspaceFolder}/src/Service/BakTraCam.Service.WebApi/bin/Debug/net5.0/BakTraCam.Service.WebApi.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/SERVICE/BakTraCam.Service.WebApi",
+            "cwd": "${workspaceFolder}/src/Service/BakTraCam.Service.WebApi",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {

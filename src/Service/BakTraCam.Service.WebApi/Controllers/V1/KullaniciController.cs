@@ -3,8 +3,11 @@ using BakTraCam.Core.Business.Application.Kullanici;
 using BakTraCam.Service.DataContract;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BakTraCam.Service.WebApi.Controllers
+namespace BakTraCam.Service.WebApi.Controllers.V1
 {
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiController]
+    [ApiVersion("1.0")]
     public class KullaniciController : ControllerBase
     {
         private readonly IKullaniciApplication _kullaniciApp;

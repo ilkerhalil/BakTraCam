@@ -9,9 +9,9 @@ namespace BakTraCam.Core.DataAccess.UnitOfWork
     public sealed class DatabaseUnitOfWork : IDatabaseUnitOfWork
     {
 
-        private DatabaseContext Context { get; }
+        private BakTraCamContext Context { get; }
 
-        public DatabaseUnitOfWork(DatabaseContext context)
+        public DatabaseUnitOfWork(BakTraCamContext context)
         {
             Context = context;
         }

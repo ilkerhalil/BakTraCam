@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using System.Linq;
 using System.Reflection;
 
 namespace BakTraCam.Core.DataAccess.Context
 {
-    public class DatabaseContextFactory: IDesignTimeDbContextFactory<DatabaseContext>
+    public class DatabaseContextFactory: IDesignTimeDbContextFactory<BakTraCamContext>
     {
         private IConfiguration Configuration { get; }
         public DatabaseContextFactory() { }
@@ -14,14 +13,14 @@ namespace BakTraCam.Core.DataAccess.Context
         {
             Configuration = configuration;
         }
-        public DatabaseContext CreateDbContext(string[] args)
+        public BakTraCamContext CreateDbContext(string[] args)
         {
-            string dbName = args.FirstOrDefault();
+            //var dbName = args.FirstOrDefault();
 
-            string connectionString = Configuration?.GetConnectionString("mainDb") ?? "Datasource=BakTraCam.db";
-            DbContextOptionsBuilder<DatabaseContext> builder = new DbContextOptionsBuilder<DatabaseContext>();
+            var connectionString = Configuration?.GetConnectionString("mainDb") ?? "Datasource=BakTraCam.db";
+            var builder = new DbContextOptionsBuilder<BakTraCamContext>();
             builder.UseSqlite(connectionString, options => options.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name));
-            return new DatabaseContext(builder.Options);
+            return new BakTraCamContext(builder.Options);
         }
     }
 }

@@ -1,11 +1,11 @@
 import { BasicBase } from './ortak.model';
 
 export interface KullaniciModelBasic extends BasicBase {
-    Ad: string;
+    Name: string;
     Unvan: string;
 }
 
 export interface KullaniciModel extends BasicBase {
-    Ad: string;
+    Name: string;
     UnvanId: number;
 }

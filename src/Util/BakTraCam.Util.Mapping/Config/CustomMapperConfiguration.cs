@@ -10,33 +10,33 @@ namespace BakTraCam.Util.Mapping.Config
     {
         protected override void Configure()
         {
-            MapBakim();
-            MapOrtak();
+            MapMaintenance();
+            MapCommon();
         }
 
-        private void MapOrtak()
+        private void MapCommon()
         {
             WhenMapping
-                .From<KullaniciEntity>()
+                .From<UserEntity>()
                 .To<SelectModel>()
-                .Map((e, dto) => e.Ad)
-                .To(dto => dto.Name)
+                //.Map((e, dto) => e.Name)
+                //.To(dto => dto.Name)
                 .And
                 .Map((e, dto) => e.Id)
                 .To(dto => dto.Key)
                 ;
 
-            GetPlansFor<KullaniciEntity>().To<SelectModel>();
+            GetPlansFor<UserEntity>().To<SelectModel>();
           
         }
 
-        private void MapBakim()
+        private void MapMaintenance()
         {
             WhenMapping
-                    .From<BakimEntity>()
-                    .To<BakimModel>()
+                    .From<MaintenanceEntity>()
+                    .To<MaintenanceModel>()
                     .IgnoreTargetMembersWhere(m => m.HasAttribute<IgnoreMappingAttribute>());
-            GetPlansFor<BakimEntity>().To<BakimModel>();
+            GetPlansFor<MaintenanceEntity>().To<MaintenanceModel>();
         }
         
     }

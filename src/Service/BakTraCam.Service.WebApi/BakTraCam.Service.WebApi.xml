@@ -4,5 +4,62 @@
         <name>BakTraCam.Service.WebApi</name>
     </assembly>
     <members>
+        <member name="T:BakTraCam.Service.WebApi.Controllers.V1.CommonController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BakTraCam.Service.WebApi.Controllers.V1.CommonController.#ctor(BakTraCam.Core.Business.Application.Common.ICommonApplication)">
+            <summary>
+            
+            </summary>
+            <param name="commonApp"></param>
+        </member>
+        <member name="T:BakTraCam.Service.WebApi.Controllers.V1.MaintenanceController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BakTraCam.Service.WebApi.Controllers.V1.MaintenanceController.#ctor(BakTraCam.Core.Business.Application.Maintenance.IMaintenanceApplication)">
+            <summary>
+            
+            </summary>
+            <param name="maintenanceApp"></param>
+        </member>
+        <member name="T:BakTraCam.Service.WebApi.Controllers.V1.UserController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BakTraCam.Service.WebApi.Controllers.V1.UserController.#ctor(BakTraCam.Core.Business.Application.User.IUserApplication)">
+            <summary>
+            
+            </summary>
+            <param name="userApp"></param>
+        </member>
+        <member name="T:BakTraCam.Service.WebApi.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BakTraCam.Service.WebApi.Startup.#ctor(Microsoft.Extensions.Hosting.IHostEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="hostEnvironment"></param>
+        </member>
+        <member name="M:BakTraCam.Service.WebApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:BakTraCam.Service.WebApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
     </members>
 </doc>

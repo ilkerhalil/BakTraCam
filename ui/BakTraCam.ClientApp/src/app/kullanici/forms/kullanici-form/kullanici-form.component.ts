@@ -47,7 +47,7 @@ export class KullaniciFormComponent implements OnInit, AfterViewInit {
     private _kService: KullaniciService) {
 
     this.form = this.formBuilder.group({
-      Ad: [[]],
+      Name: [[]],
       UnvanId: [[]]
     });
 
@@ -84,7 +84,7 @@ export class KullaniciFormComponent implements OnInit, AfterViewInit {
   public cancel(): void {
     if (!this.isClean()) {
       this.form.reset({
-        Ad: this.defaultData.Ad,
+        Name: this.defaultData.Name,
         UnvanId: this.data.UnvanId
       });
       // veri out edilerek parentine verilir
@@ -93,7 +93,7 @@ export class KullaniciFormComponent implements OnInit, AfterViewInit {
   }
   createForm(): void {
     this.form = this.formBuilder.group({
-      Ad: [this.data.Ad, [Validators.required, Validators.maxLength(50)]],
+      Name: [this.data.Name, [Validators.required, Validators.maxLength(50)]],
       UnvanId: [this.data.UnvanId, [Validators.min(1)]]
     });
 

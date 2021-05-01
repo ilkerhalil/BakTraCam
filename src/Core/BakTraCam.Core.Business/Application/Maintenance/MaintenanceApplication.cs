@@ -8,47 +8,45 @@ namespace BakTraCam.Core.Business.Application.Maintenance
 {
     public class MaintenanceApplication : ApplicationBase<MaintenanceApplication>, IMaintenanceApplication
     {
-        private readonly IMaintenanceDomain _bakimDom;
+        private readonly IMaintenanceDomain _maintenanceDomain;
 
-        //public BakimApplication(IServiceProvider serviceProvider) : base(serviceProvider)
-        //{
-        //    _bakimDom = serviceProvider.GetService<IBakimDomain>();
-        //}
-        public MaintenanceApplication(IDatabaseUnitOfWork uow,IMaintenanceDomain bakimDom) : base(uow)
+ 
+        public MaintenanceApplication(IDatabaseUnitOfWork uow,IMaintenanceDomain maintenanceDomain) 
+            : base(uow)
         {
-            _bakimDom = bakimDom;
+            _maintenanceDomain = maintenanceDomain;
         }
 
         public Task<IEnumerable<MaintenanceModelBasic>> OnBesGunYaklasanBakimlariGetirAsync()
         {
-            return _bakimDom.OnBesGunYaklasanBakimlariGetirAsync();
+            return _maintenanceDomain.OnBesGunYaklasanBakimlariGetirAsync();
         }
         public Task<IEnumerable<MaintenanceModelBasic>> BakimlistesiGetirAsync()
         {
-            return _bakimDom.BakimlariGetirAsync();
+            return _maintenanceDomain.BakimlariGetirAsync();
         }
 
         public Task<MaintenanceModel> GetirBakimAsync(int id)
         {
-            return _bakimDom.GetirBakimAsync(id);
+            return _maintenanceDomain.GetirBakimAsync(id);
         }
 
         public Task<IEnumerable<MaintenanceModelBasic>> GetirBakimListesiTipFiltreliAsync(int tip)
         {
-            return _bakimDom.getirBakimListesiTipFiltreliAsync(tip);
+            return _maintenanceDomain.getirBakimListesiTipFiltreliAsync(tip);
         }
         public Task<IEnumerable<MaintenanceModelBasic>> GetirBakimListesiDurumFiltreliAsync(int durum)
         {
-            return _bakimDom.getirBakimListesiDurumFiltreliAsync(durum);
+            return _maintenanceDomain.getirBakimListesiDurumFiltreliAsync(durum);
         }
 
         public Task<MaintenanceModel> KaydetBakimAsync(MaintenanceModel bakimModel)
         {
-            return _bakimDom.KaydetBakimAsync(bakimModel);
+            return _maintenanceDomain.KaydetBakimAsync(bakimModel);
         }
         public Task<int> SilBakimAsync(int id)
         {
-            return _bakimDom.SilBakimAsync(id);
+            return _maintenanceDomain.SilBakimAsync(id);
         }
 
         

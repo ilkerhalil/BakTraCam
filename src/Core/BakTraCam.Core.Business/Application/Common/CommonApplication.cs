@@ -9,12 +9,7 @@ namespace BakTraCam.Core.Business.Application.Common
     public class CommonApplication : ApplicationBase<CommonApplication>, ICommonApplication
     {
         private readonly ICommonDomain _commonDomain;
-        //private readonly IDatabaseUnitOfWork _uow ;
-        //public OrtakApplication(IServiceProvider serviceProvider) : base(serviceProvider)
-        //{
-        //    _ortakDom = serviceProvider.GetService<IOrtakDomain>();
-        //    _uow = serviceProvider.GetService<IDatabaseUnitOfWork>();
-        //}
+        
         public CommonApplication(IDatabaseUnitOfWork uow, ICommonDomain commonDomain)
             : base(uow)
         {

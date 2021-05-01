@@ -8,33 +8,32 @@ namespace BakTraCam.Core.Business.Application.User
 {
     public class UserApplication : ApplicationBase<UserApplication>, IUserApplication
     {
-        private readonly IUserDomain _kullaniciDom;
+        private readonly IUserDomain _userDomain;
  
-        //}
-        public UserApplication(IDatabaseUnitOfWork uow, IUserDomain kullaniciDom)
+        public UserApplication(IDatabaseUnitOfWork uow, IUserDomain userDomain)
             : base(uow)
         {
-            _kullaniciDom = kullaniciDom;
+            _userDomain = userDomain;
         }
 
 
         public Task<IEnumerable<UserModel>> KullaniciListesiGetirAsync()
         {
-            return _kullaniciDom.KullanicilariGetirAsync();
+            return _userDomain.KullanicilariGetirAsync();
         }
         public Task<UserModel> KaydetKullaniciAsync(UserModel kullaniciModel)
         {
-            return _kullaniciDom.KaydetKullaniciAsync(kullaniciModel);
+            return _userDomain.KaydetKullaniciAsync(kullaniciModel);
         }
 
         public Task<int> SilKullaniciAsync(int id)
         {
-            return _kullaniciDom.SilKullaniciAsync(id);
+            return _userDomain.SilKullaniciAsync(id);
         }
 
         public Task<UserModel> KullaniciGetirAsync(int id)
         {
-            return _kullaniciDom.KullaniciGetirAsync(id);
+            return _userDomain.KullaniciGetirAsync(id);
         }
 
 
